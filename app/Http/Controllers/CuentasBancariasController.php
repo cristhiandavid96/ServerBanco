@@ -27,8 +27,10 @@ class CuentasBancariasController extends Controller
     public function index(Request $request)
     {
         $arraydata =[];
+        $userid = $request['usuario_id'] ?? null;
         $usuarios = new usuarios;
-        $cuentasbancaria =  cuentasbancarias::all();
+        $cuentasbancaria =  cuentasbancarias::where('usuario_id',$userid)->get();
+
         foreach ($cuentasbancaria as $key=>$obj) {
             $cuentasbancaria[$key]['usuario_id'] = $usuarios->getUser($obj->usuario_id)['nombre']; 
         }

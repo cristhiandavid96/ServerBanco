@@ -24,7 +24,11 @@ class usuarios extends Authenticatable
     
     public function getUser($usuario_id)
     {
-        $user = usuarios::find($usuario_id);
-        return ['id'=>$user->id,'nombre'=>$user->nombre];
+        if($usuario_id){
+            $user = usuarios::find($usuario_id);
+            $userid = $user->id ?? null;
+            $nombre = $user->nombre ?? null;
+            return ['id'=>$userid,'nombre'=>$nombre];
+        }
     }
 }
