@@ -38,7 +38,8 @@ class AuthController extends Controller
                 'res'=> true,
                 'token'=> $token,
                 'data'=>[                    
-                    'name'=>$user->nombre
+                    'name'=>$user->nombre,
+                    'user_id'=>$user->id
                 ]
             ]);
         }else{

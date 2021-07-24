@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\cuentasbancarias;
+use App\Models\usuarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\CreateCuentasBancariasRequest;
@@ -22,9 +23,16 @@ class CuentasBancariasController extends Controller
         ] , 200);
         
     }
+    
     public function index(Request $request)
     {
-        $cuentasbancaria = cuentasbancarias::all();
+        $arraydata =[];
+        $usuarios = new usuarios;
+        $cuentasbancaria =  cuentasbancarias::all();
+        foreach ($cuentasbancaria as $key=>$obj) {
+            $cuentasbancaria[$key]['usuario_id'] = $usuarios->getUser($obj->usuario_id)['nombre']; 
+        }
+        
         return   \Response::json([
             'res'=>$cuentasbancaria, 
         ], 200);

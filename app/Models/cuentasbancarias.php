@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\usuarios;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +21,10 @@ class cuentasbancarias extends Model
         'created_at', 'updated_at'
     ];
 
+    public function users()
+    {
+        return $this->hasOne(usuarios::class);
+    }
     public static function rules($isNew = true)
     {
         return [
