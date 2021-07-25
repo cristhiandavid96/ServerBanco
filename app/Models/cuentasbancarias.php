@@ -35,4 +35,13 @@ class cuentasbancarias extends Model
         ];
     }
     
+    public function getCuenta($id)
+    {
+        if($id){
+            $user = cuentasbancarias::find($id);
+            $cuenta_id = $user->id ?? null;
+            $cuenta_numero = $user->numero ?? null;
+            return ['id'=>$cuenta_id,'numero'=>$cuenta_numero];
+        }
+    }
 }
