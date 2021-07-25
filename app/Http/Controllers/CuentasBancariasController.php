@@ -40,6 +40,27 @@ class CuentasBancariasController extends Controller
         ], 200);
     }
 
+    public function cuentasAll(Request $request)
+    {
+        $cuentasbancarias = cuentasbancarias::select("id as value","numero as text","id as key")->get();
+        return   \Response::json([
+            'res'=>$cuentasbancarias, 
+        ], 200);
+    }
+
+    public function cuentas(Request $request)
+    {
+        $arraydata =[];
+        $userid = $request['usuario_id'] ?? null;
+        $usuarios = new usuarios;
+        $cuentasbancaria =  cuentasbancarias::where('usuario_id',$userid)->select("id as value","numero as text","id as key")->get();
+
+        
+        return   \Response::json([
+            'res'=>$cuentasbancaria, 
+        ], 200);
+    }
+
     public function update(UpdateCuentasBancariasRequest $request,$id)
     {
         $input = $request->all();        

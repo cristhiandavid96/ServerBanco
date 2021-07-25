@@ -23,4 +23,6 @@ Route::ApiResource('users','UserController');
 Route::post('login', 'AuthController@login');
 Route::post('logout', 'AuthController@logout');
 Route::ApiResource('transacciones', 'TransaccionesController');
+Route::get('cuentasbancarias/cuentas', 'CuentasBancariasController@cuentas');
+Route::get('cuentasbancarias/all', 'CuentasBancariasController@cuentasAll');
 Route::ApiResource('cuentasbancarias', 'CuentasBancariasController');
